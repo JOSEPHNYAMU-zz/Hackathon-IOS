@@ -22,7 +22,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     
     func getNews() {
-        let newsRequest = URLRequest(url: URL(string: "https://newsapi.org/v2/top-headlines?country=au&category=entertainment&apiKey=9a6484ffc34342e3877f5b19089c5224")!)
+        let newsRequest = URLRequest(url: URL(string: "https://newsapi.org/v2/top-headlines?country=de&category=science&apiKey=9a6484ffc34342e3877f5b19089c5224")!)
         let task = URLSession.shared.dataTask(with: newsRequest) {(data, response, error) in
             
             if error != nil {
@@ -80,8 +80,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let List = tableView.dequeueReusableCell(withIdentifier: "itemList", for: indexPath) as! ItemList
         
+        let List = tableView.dequeueReusableCell(withIdentifier: "itemList", for: indexPath) as! ItemList
         
         if self.allitemslist?[indexPath.item].picture != nil &&  self.allitemslist?[indexPath.item].title != nil
             
@@ -115,6 +115,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 }
 
 extension UIImageView {
+    
     func getImage(from url: String) {
         
        let newsImage = URLRequest(url: URL(string: url)!)
