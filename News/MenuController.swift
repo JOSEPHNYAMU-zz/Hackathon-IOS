@@ -9,5 +9,25 @@
 import UIKit
 
 class MenuController: NSObject {
+    
+    let menuView = UIView()
+    
+    public func showMenu() {
+        
+        if let window = UIApplication.shared.keyWindow {
+            
+        menuView.frame = window.frame
+            
+            menuView.backgroundColor = UIColor(white: 0, alpha: 0.5)
+            
+            window.addSubview(menuView)
+            
+            UIView.animate(withDuration: 0.5, animations: {
+                self.menuView.alpha = 1
+            })
+            
+        }
+    }
 
 }
+
