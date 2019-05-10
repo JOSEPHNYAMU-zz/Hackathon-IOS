@@ -82,14 +82,19 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let List = tableView.dequeueReusableCell(withIdentifier: "itemList", for: indexPath) as! ItemList
         
-        List.title.text = self.allitemslist?[indexPath.item].title
         
-        List.body.text = self.allitemslist?[indexPath.item].body
-        
-        List.author.text = self.allitemslist?[indexPath.item].author
-        
-        if self.allitemslist?[indexPath.item].picture != nil {
+        if self.allitemslist?[indexPath.item].picture != nil &&  self.allitemslist?[indexPath.item].title != nil
+            
+            && self.allitemslist?[indexPath.item].body != nil &&  self.allitemslist?[indexPath.item].author != nil {
+            
+            List.title.text = self.allitemslist?[indexPath.item].title
+            
+            List.body.text = self.allitemslist?[indexPath.item].body
+            
+            List.author.text = self.allitemslist?[indexPath.item].author
+            
             List.picture.getImage(from: (self.allitemslist?[indexPath.item].picture!)!)
+            
         }
         
         return List
