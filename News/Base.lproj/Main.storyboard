@@ -23,7 +23,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="itemList" rowHeight="179" id="aTG-ZX-9uc">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="itemList" rowHeight="179" id="aTG-ZX-9uc" customClass="ItemList" customModule="News" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="179"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aTG-ZX-9uc" id="ZcS-br-gcR">
@@ -71,6 +71,12 @@
                                                 <constraint firstItem="aax-VQ-0Sj" firstAttribute="leading" secondItem="0in-ej-MFf" secondAttribute="trailing" constant="20" id="yQA-i9-J7A"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="author" destination="TOb-Sh-9DC" id="vK1-cM-Sww"/>
+                                            <outlet property="body" destination="aax-VQ-0Sj" id="5ru-iO-UJb"/>
+                                            <outlet property="picture" destination="0in-ej-MFf" id="ti8-at-WCm"/>
+                                            <outlet property="title" destination="qd5-ht-X68" id="OiU-Ap-5Hw"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>

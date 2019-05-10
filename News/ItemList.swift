@@ -8,23 +8,23 @@
 
 import UIKit
 
-class ItemList: UITableViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
+class ItemList: UITableViewCell {
+    
+    
+    @IBOutlet var picture: UIImageView!
+    @IBOutlet var title: UILabel!
+    @IBOutlet var body: UILabel!
+    @IBOutlet var author: UILabel!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        // Initialization code
     }
 
-    // MARK: - Table view data source
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        // Configure the view for the selected state
     }
 
 }
