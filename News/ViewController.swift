@@ -12,6 +12,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     
     @IBOutlet var tableView: UITableView!
+    var allitemslist: [Item]? = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,14 +20,64 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         getNews()
     }
     
+    
     func getNews() {
+        let newsRequest = URLRequest(url: URL(string: "https://newsapi.org/v2/top-headlines?country=us&category=technology&apiKey=9a6484ffc34342e3877f5b19089c5224")!)
+        let task = URLSession.shared.dataTask(with: newsRequest) {(data, response, error) in
+            
+            if error != nil {
+                
+                print("There is an Error")
+                return
+                
+            }
+            
+            self.allitemslist = [Item]()
+            
+            do {
+                
+                let items = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as!
+                    [String: AnyObject]
+                
+                if let allItems = items["articles"] as? [[String: AnyObject]] {
+                    for singleItem in allItems {
+                        
+                        let news = Item()
+                        
+                        if let title = singleItem["title"] as? String, let author = singleItem["author"] as? String,
+                            let body = singleItem["description"] as? String, let picture = singleItem["urlToImage"] as? String, let path = singleItem["url"] as? String {
+                            
+                            news.title = title
+                            news.body = body
+                            news.author = author
+                            news.path = path
+                            news.picture = picture
+                        }
+                        
+                        self.allitemslist?.append(news)
+                    }
+                }
+                DispatchQueue.main.async {
+                    
+                    self.tableView.reloadData()
+                    
+                }
+                
+            } catch let error {
+                
+                print(error)
+                
+            }
+            
+        }
         
+        task.resume()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let List = tableView.dequeueReusableCell(withIdentifier: "itemList", for: indexPath) as! ItemList
-        List.title.text = "THIS IS A TEST"
-        List.body.text = "This is the body of The News Article Here"
+        List.title.text = self.allitemslist?[indexPath.item].title
+        List.body.text = self.allitemslist?[indexPath.item].description
         return List
     }
     
@@ -35,7 +86,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return self.allitemslist?.count ?? 0
     }
     
 }
