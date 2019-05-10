@@ -16,11 +16,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        getNews()
+    }
+    
+    func getNews() {
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let List = tableView.dequeueReusableCell(withIdentifier: "itemList", for: indexPath) as! ItemList
-        List.title.text = "Am Here"
+        List.title.text = "THIS IS A TEST"
+        List.body.text = "This is the body of The News Article Here"
         return List
     }
     
