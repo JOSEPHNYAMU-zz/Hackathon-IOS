@@ -106,34 +106,56 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="52" y="-46"/>
+            <point key="canvasLocation" x="233" y="-183"/>
         </scene>
-        <!--View Controller-->
+        <!--Webview View Controller-->
         <scene sceneID="fis-WG-L9l">
             <objects>
-                <viewController id="2b1-w8-p9a" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="web" id="2b1-w8-p9a" customClass="WebviewViewController" customModule="News" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ieT-Nd-M0a">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D8a-lU-lVz">
+                            <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D8a-lU-lVz">
                                 <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
-                                    <navigationItem title="Title" id="HUg-yC-7xC"/>
+                                    <navigationItem title="Article" id="HUg-yC-7xC">
+                                        <barButtonItem key="leftBarButtonItem" image="Back" landscapeImage="Image" largeContentSizeImage="Image" id="sWX-0y-ieK">
+                                            <connections>
+                                                <segue destination="BYZ-38-t0r" kind="show" id="Qgh-84-wiC"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
                                 </items>
                             </navigationBar>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pe2-tt-CWA">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Pe2-tt-CWA" firstAttribute="bottom" secondItem="qUC-Ro-Hg3" secondAttribute="bottom" id="0NN-5u-y9m"/>
+                            <constraint firstItem="Pe2-tt-CWA" firstAttribute="top" secondItem="D8a-lU-lVz" secondAttribute="bottom" id="GuH-oD-LhK"/>
+                            <constraint firstItem="D8a-lU-lVz" firstAttribute="leading" secondItem="qUC-Ro-Hg3" secondAttribute="leading" id="ck0-Dj-Is5"/>
+                            <constraint firstItem="Pe2-tt-CWA" firstAttribute="trailing" secondItem="qUC-Ro-Hg3" secondAttribute="trailing" id="mVc-Pw-BDj"/>
+                            <constraint firstItem="D8a-lU-lVz" firstAttribute="top" secondItem="qUC-Ro-Hg3" secondAttribute="top" id="qas-m4-1Ea"/>
+                            <constraint firstItem="D8a-lU-lVz" firstAttribute="trailing" secondItem="qUC-Ro-Hg3" secondAttribute="trailing" id="sS0-8v-eJK"/>
+                            <constraint firstItem="Pe2-tt-CWA" firstAttribute="leading" secondItem="qUC-Ro-Hg3" secondAttribute="leading" id="zmX-Vy-03k"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="qUC-Ro-Hg3"/>
                     </view>
+                    <connections>
+                        <outlet property="webView" destination="Pe2-tt-CWA" id="Z9v-lK-H0j"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u27-OA-5Uh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="783" y="-46"/>
+            <point key="canvasLocation" x="1049" y="-183"/>
         </scene>
     </scenes>
     <resources>
+        <image name="Back" width="20" height="20"/>
         <image name="Image" width="154.5" height="137"/>
     </resources>
 </document>

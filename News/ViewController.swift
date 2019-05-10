@@ -112,6 +112,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+       let id = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "web") as! WebviewViewController
+        
+        id.url = self.allitemslist?[indexPath.item].path
+        
+        self.present(id, animated: true, completion: nil)
+        
+    }
+    
 }
 
 extension UIImageView {
