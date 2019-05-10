@@ -22,12 +22,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     
     func getNews() {
-        let newsRequest = URLRequest(url: URL(string: "https://newsapi.org/v2/top-headlines?country=us&category=technology&apiKey=9a6484ffc34342e3877f5b19089c5224")!)
+        let newsRequest = URLRequest(url: URL(string: "https://newsapi.org/v2/top-headlines?country=au&category=entertainment&apiKey=9a6484ffc34342e3877f5b19089c5224")!)
         let task = URLSession.shared.dataTask(with: newsRequest) {(data, response, error) in
             
             if error != nil {
                 
                 print("There is an Error")
+                
                 return
                 
             }
@@ -48,9 +49,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                             let body = singleItem["description"] as? String, let picture = singleItem["urlToImage"] as? String, let path = singleItem["url"] as? String {
                             
                             news.title = title
+                            
                             news.body = body
+                            
                             news.author = author
+                            
                             news.path = path
+                            
                             news.picture = picture
                         }
                         
@@ -76,18 +81,58 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let List = tableView.dequeueReusableCell(withIdentifier: "itemList", for: indexPath) as! ItemList
+        
         List.title.text = self.allitemslist?[indexPath.item].title
-        List.body.text = self.allitemslist?[indexPath.item].description
+        
+        List.body.text = self.allitemslist?[indexPath.item].body
+        
+        List.author.text = self.allitemslist?[indexPath.item].author
+        
+        if self.allitemslist?[indexPath.item].picture != nil {
+            List.picture.getImage(from: (self.allitemslist?[indexPath.item].picture!)!)
+        }
+        
         return List
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
+        
         return 1
+        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
         return self.allitemslist?.count ?? 0
+        
     }
     
 }
+
+extension UIImageView {
+    func getImage(from url: String) {
+        
+       let newsImage = URLRequest(url: URL(string: url)!)
+        
+        let task = URLSession.shared.dataTask(with: newsImage) {(data, response, error) in
+            
+            if error != nil {
+                
+                print("No Image")
+                
+                return
+                
+            }
+            
+            DispatchQueue.main.async {
+                
+                self.image = UIImage(data: data!)
+                
+            }
+            
+        }
+        task.resume()
+    }
+}
+
 

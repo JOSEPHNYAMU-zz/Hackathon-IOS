@@ -11,9 +11,13 @@ import UIKit
 class Item: NSObject {
     
     var picture: String?
+    
     var title: String?
+    
     var body: String?
+    
     var author: String?
+    
     var path: String?
 
 }
