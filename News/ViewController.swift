@@ -22,7 +22,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     
     func getNews() {
-        let newsRequest = URLRequest(url: URL(string: "https://newsapi.org/v2/top-headlines?country=de&category=science&apiKey=9a6484ffc34342e3877f5b19089c5224")!)
+        let newsRequest = URLRequest(url: URL(string: "https://newsapi.org/v2/everything?domains=wsj.com,nytimes.com&apiKey=9a6484ffc34342e3877f5b19089c5224")!)
         let task = URLSession.shared.dataTask(with: newsRequest) {(data, response, error) in
             
             if error != nil {
@@ -57,6 +57,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                             news.path = path
                             
                             news.picture = picture
+                            
                         }
                         
                         self.allitemslist?.append(news)
@@ -120,6 +121,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         self.present(id, animated: true, completion: nil)
         
+    }
+    
+    let menuController = MenuController()
+    @IBAction func menuPress(_ sender: Any) {
+        
+        menuController.showMenu()
     }
     
 }
