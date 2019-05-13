@@ -13,16 +13,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     @IBOutlet var tableView: UITableView!
     var allitemslist: [Item]? = []
+    var source = "sports"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        getNews()
+        getNews(fromSource: source)
     }
     
     
-    func getNews() {
-        let newsRequest = URLRequest(url: URL(string: "https://newsapi.org/v2/everything?domains=wsj.com,nytimes.com&apiKey=9a6484ffc34342e3877f5b19089c5224")!)
+    func getNews(fromSource provider: String) {
+        let newsRequest = URLRequest(url: URL(string: "https://newsapi.org/v2/top-headlines?country=ch&category=\(provider)&apiKey=9a6484ffc34342e3877f5b19089c5224")!)
         let task = URLSession.shared.dataTask(with: newsRequest) {(data, response, error) in
             
             if error != nil {
@@ -127,6 +128,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBAction func menuPress(_ sender: Any) {
         
         menuController.showMenu()
+        menuController.mainVC = self
     }
     
 }
@@ -140,11 +142,11 @@ extension UIImageView {
         let task = URLSession.shared.dataTask(with: newsImage) {(data, response, error) in
             
             if error != nil {
-                
+
                 print("No Image")
-                
+
                 return
-                
+
             }
             
             DispatchQueue.main.async {
@@ -156,6 +158,7 @@ extension UIImageView {
         }
         task.resume()
     }
+    
 }
 
 

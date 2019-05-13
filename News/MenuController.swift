@@ -12,7 +12,8 @@ class MenuController: NSObject, UITableViewDelegate, UITableViewDataSource {
     
     let menuView = UIView()
     let menuTableView = UITableView()
-    let arrayOfSources = ["ABC News", "Al Jazeera English", "Ary News", "Associated Press", "BBC Sport", "Business Insider"]
+    let arrayOfSources = ["Business", "Entertainment", "Health", "Science", "Sports", "Technology"]
+    var mainVC: ViewController?
     
     public func showMenu() {
         
@@ -78,6 +79,17 @@ class MenuController: NSObject, UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
         return 50
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    
+        if let vc = mainVC {
+            
+            vc.source = arrayOfSources[indexPath.item].lowercased()
+            vc.getNews(fromSource: arrayOfSources[indexPath.item].lowercased())
+            dismissMenu()
+        }
+        
     }
     
     override init() {
